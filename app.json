@@ -23,6 +23,17 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/Karla-Regular.ttf",
+            "MarkaziText-Regular.ttf"
+          ]
+        }
+      ]
+    ]
   }
 }
