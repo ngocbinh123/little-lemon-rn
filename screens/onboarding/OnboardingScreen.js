@@ -7,7 +7,7 @@ import style from "./styles/OnboardingStyle";
 import textStyle from "../../design_token/TextStyle";
 import inputStyle from "../../design_token/InputStyle";
 import spacing from "../../design_token/Spacing";
-import String from "./res/String";
+import Strings from "./res/Strings";
 import OnboardingHeader from "./components/OnboardingHeader";
 import Space from "../../components/Space";
 import InputWithLabel from "../../components/InputWithLabel";
@@ -29,9 +29,6 @@ export default function OnboardingScreen({ dispatch }) {
       StorageKeys.fistName,
     );
     const localEmail = await AsynncStorageManager.getData(StorageKeys.email);
-    console.log("First Name:", localFirstName);
-    console.log("Email:", localEmail);
-
     dispatch({ type: "SET_ONBOARDING_COMPLETED", payload: true });
   };
   const handleInputEmail = (text) => {
@@ -46,28 +43,28 @@ export default function OnboardingScreen({ dispatch }) {
     <View style={style.container}>
       <Space height={spacing.spacing48} />
       <OnboardingHeader />
-      <Text style={textStyle.h2}>{String.onboardingIntro}</Text>
+      <Text style={textStyle.h2}>{Strings.onboardingIntro}</Text>
       <Space height={spacing.spacing48} />
 
       <InputWithLabel
-        label={String.firstName}
+        label={Strings.firstName}
         value={nameFirst}
-        placeholder={String.firstNamePlaceholder}
+        placeholder={Strings.firstNamePlaceholder}
         keyboardType="default"
         onChangeText={handleInputFirstName}
       />
       <Space height={spacing.spacing12} />
       <InputWithLabel
-        label={String.email}
+        label={Strings.email}
         value={email}
-        placeholder={String.emailPlaceholder}
+        placeholder={Strings.emailPlaceholder}
         keyboardType="email-address"
         onChangeText={handleInputEmail}
       />
 
       <Space height={spacing.spacing24} />
       <PrimaryButton
-        title={String.next}
+        title={Strings.next}
         disable={isButtonDisabled}
         onPress={handleNextPress}
         style={{ width: "100%" }}

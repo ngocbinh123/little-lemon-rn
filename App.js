@@ -21,7 +21,6 @@ function reducer(preState, action) {
     case "SET_LOADING":
       return { ...preState, isLoading: action.payload };
     case "SET_ONBOARDING_COMPLETED":
-      console.log("Onboarding completed", action.payload);
       return {
         ...preState,
         isOnboardingCompleted: action.payload,
@@ -36,10 +35,8 @@ export default function App() {
   const [uiState, dispatch] = useReducer(reducer, initialState);
   useEffect(() => {
     const checkOnboardingStatus = async () => {
-      console.log("Checking onboarding status");
       const hasEmail =
         (await AsyncStorageManager.getData(StorageKeys.email)) != null;
-      console.log("hasEmail", hasEmail);
       if (hasEmail) {
         dispatch({ type: "SET_ONBOARDING_COMPLETED", payload: true });
       } else {
@@ -63,7 +60,6 @@ export default function App() {
         {uiState.isOnboardingCompleted ? (
           <Stack.Screen name="Profile" component={ProfileScreen} />
         ) : (
-          // <Stack.Screen name="Onboarding" component={OnboardingScreen}/>
           <Stack.Screen name="Onboarding">
             {(props) => <OnboardingScreen {...props} dispatch={dispatch} />}
           </Stack.Screen>
