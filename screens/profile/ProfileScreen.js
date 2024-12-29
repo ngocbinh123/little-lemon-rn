@@ -143,7 +143,7 @@ export default function profileScreen() {
       setPhoneError("");
       AsyncStorageManager.saveData(StorageKeys.phone, phone);
     } else {
-      setPhoneError(Strings.phonelInvalid);
+      setPhoneError(Strings.phoneInvalid);
     }
 
     onSaveImage();

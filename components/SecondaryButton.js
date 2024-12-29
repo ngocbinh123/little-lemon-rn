@@ -2,7 +2,7 @@ import { View, Button, TouchableOpacity, Text } from "react-native";
 import buttonStyle from "../design_token/ButtonStyle";
 import React from "react";
 
-export default function PrimaryButton({ style, title, disable, onPress }) {
+export default function SecondaryButton({ style, title, disable, onPress }) {
   return (
     <TouchableOpacity
       style={[disable ? buttonStyle.disabled : buttonStyle.secondary, style]}

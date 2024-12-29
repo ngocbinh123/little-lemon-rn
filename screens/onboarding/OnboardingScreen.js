@@ -27,12 +27,6 @@ export default function OnboardingScreen({ dispatch }) {
   const handleNextPress = async function saveData() {
     await AsynncStorageManager.saveData(StorageKeys.firstName, nameFirst);
     await AsynncStorageManager.saveData(StorageKeys.email, email);
-
-    const localFirstName = await AsynncStorageManager.getData(
-      StorageKeys.fistName,
-    );
-    console.log("firstName11", localFirstName);
-    const localEmail = await AsynncStorageManager.getData(StorageKeys.email);
     dispatch({ type: "SET_ONBOARDING_COMPLETED", payload: true });
     navigation.replace(Router.dashboard);
   };
@@ -46,10 +40,10 @@ export default function OnboardingScreen({ dispatch }) {
   };
   return (
     <View style={style.container}>
-      <Space height={spacing.spacing48} />
+      <Space height={spacing.spacing46} />
       <OnboardingHeader />
       <Text style={textStyle.h2}>{Strings.onboardingIntro}</Text>
-      <Space height={spacing.spacing48} />
+      <Space height={spacing.spacing46} />
 
       <InputWithLabel
         label={Strings.firstName}

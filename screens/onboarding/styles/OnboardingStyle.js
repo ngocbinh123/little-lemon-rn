@@ -6,7 +6,7 @@ const style = StyleSheet.create({
     flex: 1,
     width: "100%",
     alignItems: "center",
-    justifyContent: "top",
+    justifyContent: "flex-start",
     backgroundColor: "#fff",
     paddingHorizontal: Spacing.spacing16,
     paddingVertical: Spacing.spacing24,

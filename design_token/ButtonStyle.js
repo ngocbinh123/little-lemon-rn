@@ -62,7 +62,7 @@ const buttonStyle = {
     textAlign: "center",
     fontWeight: "bold",
   },
-  teriary: {
+  tertiary: {
     height: Dimensions.btn,
     borderWidth: 1,
     borderColor: colors.primary1,
@@ -73,7 +73,7 @@ const buttonStyle = {
     justifyContent: "center", // Center content vertically
     alignItems: "center", // Center content horizontally
   },
-  teriaryText: {
+  tertiaryText: {
     color: colors.primary1,
     textAlign: "center",
     fontWeight: "bold",

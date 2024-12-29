@@ -8,12 +8,13 @@ import Spacing from "../../../design_token/Spacing";
 import Dimensions from "../../../design_token/Dimensions";
 import CircleAvatar from "./CircleAvatar";
 
-export default function ProfileHeader({ imagePath, onImageChange }) {
+export default function ProfileHeader({
+  imagePath,
+  onImageChange,
+  onBackPress,
+  showBackButton = true,
+}) {
   const [firstName, setFirstName] = useState("");
-  const onBackPress = () => {
-    console.log("Back button pressed");
-  };
-
   useEffect(() => {
     const fetchFirstName = async () => {
       const name = await AsyncStorageManager.getData(StorageKeys.firstName);
@@ -26,7 +27,11 @@ export default function ProfileHeader({ imagePath, onImageChange }) {
 
   return (
     <View style={style.container}>
-      <BackButton onPress={onBackPress} />
+      {showBackButton ? (
+        <BackButton onPress={onBackPress} />
+      ) : (
+        <View style={style.backButtonPlaceholder} />
+      )}
       <Image source={require("../../../assets/Logo.png")} style={style.logo} />
       <CircleAvatar imagePath={imagePath} onImageChange={onImageChange} />
     </View>

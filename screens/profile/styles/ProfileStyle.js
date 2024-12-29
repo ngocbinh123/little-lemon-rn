@@ -4,22 +4,22 @@ import Colors from "../../../design_token/Color";
 const style = StyleSheet.create({
   scrollContainer: {
     flexGrow: 1,
-    paddingTop: Spacing.spacing16,
+    paddingTop: Spacing.spacing64,
     paddingBottom: Spacing.spacing24,
     alignItems: "center",
-    justifyContent: "top",
+    justifyContent: "flex-start",
     backgroundColor: "#fff",
   },
   container: {
     flex: 1,
     paddingTop: Spacing.spacing16,
     alignItems: "center",
-    justifyContent: "top",
+    justifyContent: "flex-start",
     backgroundColor: "#fff",
   },
   subContainer: {
     width: "100%",
-    justifyContent: "top",
+    justifyContent: "flex-start",
     paddingHorizontal: Spacing.spacing16,
   },
   rowContainer: {

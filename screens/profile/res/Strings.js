@@ -19,7 +19,7 @@ const Strings = {
   firstNameInvalid: "First name is invalid",
   lastNameInvalid: "Last name is invalid",
   emailInvalid: "Email is invalid",
-  phonelInvalid: "Phone is invalid",
+  phoneInvalid: "Phone is invalid",
   cancel: "Cancel",
   ok: "OK",
   logoutTitle: "Are you want to logout?",
