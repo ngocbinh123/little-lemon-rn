@@ -1,0 +1,9 @@
+const Dimensions = {
+  iconBtn: 36,
+  icon: 24,
+  avatar: 46,
+  avatar64: 64,
+  logo: 150,
+  btn: 40,
+};
+export default Dimensions;

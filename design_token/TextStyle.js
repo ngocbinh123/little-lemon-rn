@@ -40,9 +40,10 @@ const textStyle = StyleSheet.create({
   },
   label: {
     fontSize: 12,
-    color: colors.secondary1,
+    color: colors.gray,
   },
   error: {
+    fontSize: 12,
     color: "red",
   },
 });

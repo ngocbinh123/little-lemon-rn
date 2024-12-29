@@ -7,7 +7,8 @@ import ProfileScreen from "./screens/profile/ProfileScreen";
 import SplashScreen from "./screens/splash/SplashScreen";
 import AsyncStorageManager from "./local_storage/AsyncStorageManager";
 import StorageKeys from "./local_storage/StorageKeys";
-import React, { useReducer, useEffect } from "react";
+import React, { useReducer, useEffect, useState } from "react";
+import Router from "./utils/router/Router";
 
 const Stack = createNativeStackNavigator();
 
@@ -33,14 +34,19 @@ function reducer(preState, action) {
 
 export default function App() {
   const [uiState, dispatch] = useReducer(reducer, initialState);
+  const [initialRoute, setInitialRoute] = useState(Router.onboarding);
+
   useEffect(() => {
     const checkOnboardingStatus = async () => {
-      const hasEmail =
-        (await AsyncStorageManager.getData(StorageKeys.email)) != null;
+      const email = await AsyncStorageManager.getData(StorageKeys.firstName);
+      console.log("firstName1", email);
+      const hasEmail = email != null;
       if (hasEmail) {
         dispatch({ type: "SET_ONBOARDING_COMPLETED", payload: true });
+        setInitialRoute(Router.dashboard);
       } else {
         dispatch({ type: "SET_LOADING", payload: false });
+        setInitialRoute(Router.onboarding);
       }
     };
 
@@ -53,17 +59,15 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
+        initialRouteName={initialRoute}
         screenOptions={{
           headerShown: false,
         }}
       >
-        {uiState.isOnboardingCompleted ? (
-          <Stack.Screen name="Profile" component={ProfileScreen} />
-        ) : (
-          <Stack.Screen name="Onboarding">
-            {(props) => <OnboardingScreen {...props} dispatch={dispatch} />}
-          </Stack.Screen>
-        )}
+        <Stack.Screen name={Router.dashboard} component={ProfileScreen} />
+        <Stack.Screen name={Router.onboarding}>
+          {(props) => <OnboardingScreen {...props} dispatch={dispatch} />}
+        </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );
