@@ -12,7 +12,10 @@ import OnboardingHeader from "./components/OnboardingHeader";
 import Space from "../../components/Space";
 import InputWithLabel from "../../components/InputWithLabel";
 import PrimaryButton from "../../components/PrimaryButton";
+import { useNavigation } from "@react-navigation/native";
+import Router from "../../utils/router/Router";
 export default function OnboardingScreen({ dispatch }) {
+  const navigation = useNavigation();
   const [nameFirst, setNameFirst] = useState("");
   const [email, setEmail] = useState("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
@@ -22,14 +25,16 @@ export default function OnboardingScreen({ dispatch }) {
     setIsButtonDisabled(!(nameIsValid && emailIsValid)); // Disable button if any field is invalid
   };
   const handleNextPress = async function saveData() {
-    await AsynncStorageManager.saveData(StorageKeys.fistName, nameFirst);
+    await AsynncStorageManager.saveData(StorageKeys.firstName, nameFirst);
     await AsynncStorageManager.saveData(StorageKeys.email, email);
 
     const localFirstName = await AsynncStorageManager.getData(
       StorageKeys.fistName,
     );
+    console.log("firstName11", localFirstName);
     const localEmail = await AsynncStorageManager.getData(StorageKeys.email);
     dispatch({ type: "SET_ONBOARDING_COMPLETED", payload: true });
+    navigation.replace(Router.dashboard);
   };
   const handleInputEmail = (text) => {
     setEmail(text);
