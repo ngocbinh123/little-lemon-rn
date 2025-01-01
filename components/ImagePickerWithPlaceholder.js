@@ -13,6 +13,7 @@ const ImagePickerWithPlaceholder = ({
   name,
   imagePath,
   onImageChange,
+  onPress,
 }) => {
   const [displayName, setDisplayName] = useState(getInitials(name));
 
@@ -45,7 +46,10 @@ const ImagePickerWithPlaceholder = ({
   };
 
   return (
-    <TouchableOpacity onPress={pickImage} style={[styles.placeholderContainer]}>
+    <TouchableOpacity
+      onPress={onPress ?? pickImage}
+      style={[styles.placeholderContainer]}
+    >
       {imagePath ? (
         <Image source={{ uri: imagePath }} style={[styles.image, style]} />
       ) : (

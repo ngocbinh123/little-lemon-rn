@@ -7,14 +7,18 @@ import Colors from "../../../design_token/Color";
 import Spacing from "../../../design_token/Spacing";
 import Dimensions from "../../../design_token/Dimensions";
 import CircleAvatar from "./CircleAvatar";
-
+import { useNavigation } from "@react-navigation/native";
 export default function ProfileHeader({
   imagePath,
   onImageChange,
-  onBackPress,
+  onPress,
   showBackButton = true,
 }) {
+  const navigation = useNavigation();
   const [firstName, setFirstName] = useState("");
+  const onBackPress = () => {
+    navigation.goBack();
+  };
   useEffect(() => {
     const fetchFirstName = async () => {
       const name = await AsyncStorageManager.getData(StorageKeys.firstName);
@@ -33,7 +37,11 @@ export default function ProfileHeader({
         <View style={style.backButtonPlaceholder} />
       )}
       <Image source={require("../../../assets/Logo.png")} style={style.logo} />
-      <CircleAvatar imagePath={imagePath} onImageChange={onImageChange} />
+      <CircleAvatar
+        imagePath={imagePath}
+        onImageChange={onImageChange}
+        onPress={onPress}
+      />
     </View>
   );
 }

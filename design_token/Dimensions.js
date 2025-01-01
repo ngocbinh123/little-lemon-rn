@@ -5,5 +5,6 @@ const Dimensions = {
   avatar64: 64,
   logo: 150,
   btn: 40,
+  bannerImg: 96,
 };
 export default Dimensions;
