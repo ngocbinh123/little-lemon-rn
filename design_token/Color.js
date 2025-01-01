@@ -8,5 +8,6 @@ const colors = {
   avatar: "#75C5B5",
   white: "#FFFFFF",
   gray: "#F2F2F2",
+  transparent: "transparent",
 };
 export default colors;

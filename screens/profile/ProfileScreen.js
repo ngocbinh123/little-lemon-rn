@@ -48,7 +48,6 @@ export default function profileScreen() {
   };
 
   const loadNotificationStatus = async () => {
-    console.log("loadNotificationStatus");
     const orderStatuses = await AsyncStorageManager.getData(
       StorageKeys.orderStatuses,
     );
@@ -165,6 +164,7 @@ export default function profileScreen() {
       },
     ]);
   };
+
   return (
     <ScrollView contentContainerStyle={ProfileStyle.scrollContainer}>
       <ProfileHeader imagePath={imageUri} onImageChange={setImageUri} />

@@ -4,7 +4,12 @@ import AsyncStorageManager from "../../../local_storage/AsyncStorageManager";
 import StorageKeys from "../../../local_storage/StorageKeys";
 import React, { useEffect, useState } from "react";
 
-export default function CircleAvatar({ style, imagePath, onImageChange }) {
+export default function CircleAvatar({
+  style,
+  imagePath,
+  onImageChange,
+  onPress,
+}) {
   const [firstName, setFirstName] = useState("");
   useEffect(() => {
     const fetchFirstName = async () => {
@@ -22,6 +27,7 @@ export default function CircleAvatar({ style, imagePath, onImageChange }) {
       name={firstName}
       imagePath={imagePath}
       onImageChange={onImageChange}
+      onPress={onPress}
     />
   );
 }
