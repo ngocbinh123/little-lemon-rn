@@ -26,9 +26,6 @@ const BannerView = () => {
           style={styles.image}
         />
       </View>
-      {/* <TouchableOpacity style={styles.searchButton}>
-          <Text style={styles.searchIcon}>🔍</Text>
-        </TouchableOpacity> */}
     </View>
   );
 };

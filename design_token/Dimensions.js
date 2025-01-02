@@ -6,5 +6,6 @@ const Dimensions = {
   logo: 150,
   btn: 40,
   bannerImg: 96,
+  menuImg: 64,
 };
 export default Dimensions;
