@@ -7,7 +7,8 @@ const colors = {
   highlight2: "#333333",
   avatar: "#75C5B5",
   white: "#FFFFFF",
-  gray: "#F2F2F2",
+  black: "#000000",
+  gray: "#e0e0e0",
   transparent: "transparent",
 };
 export default colors;
