@@ -21,13 +21,13 @@ This is project for capstone course from coursera, and it's a React app that all
 
 ## Structures
 
-├── assets: constains project resources: image, front
-├── components: contains common components
-├── design: contains prototype (figma)
-├── design_token: contains color, text styles
-├── local_storage: databse, async storage
-├── screens: contains screens
-└── utils: contains common functions
+- assets: constains project resources: image, front
+- components: contains common components
+- design: contains prototype (figma)
+- design_token: contains color, text styles
+- local_storage: databse, async storage
+- screens: contains screens
+- utils: contains common functions
 
 ## Principles
 
