@@ -1,6 +1,5 @@
-import * as SQLite from "expo-sqlite"; // Use expo-sqlite or react-native-sqlite-storage
-// import * as SQLite from "expo-sqlite";
-// import { openDatabase } from 'expo-sqlite';
+import * as SQLite from "expo-sqlite";
+const DATABASE_NAME = "MenuDb";
 class DatabaseManager {
   db = null;
   constructor() {
@@ -9,8 +8,7 @@ class DatabaseManager {
 
   async initialize() {
     try {
-      this.db = await SQLite.openDatabaseAsync("MenuDb");
-      console.log("Database opened successfully");
+      this.db = await SQLite.openDatabaseAsync(DATABASE_NAME);
       await this.createTable();
     } catch (error) {
       console.error("could not open openDatabase:", error);

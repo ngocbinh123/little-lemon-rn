@@ -14,6 +14,7 @@ import Strings from "./res/Strings";
 import axios from "axios";
 import DashboardConst from "./DashboardConst";
 import DatabaseManager from "../../local_storage/database/DatabaseManager";
+import colors from "../../design_token/Color";
 export default function DashboardScreen() {
   const [menu, setMenu] = useState([]);
   const [searchtext, setSearchtext] = useState("");
@@ -48,27 +49,30 @@ export default function DashboardScreen() {
 
     // Set a new timeout to delay the query execution
     typingTimeoutRef.current = setTimeout(() => {
-      DatabaseManager.getMenuItemsWithFilter(text, selectedTags).then(
-        (result) => {
+      DatabaseManager.getMenuItemsWithFilter(text, selectedTags)
+        .then((result) => {
           setMenu(result);
-        },
-      );
+        })
+        .catch((error) => {
+          console.error("Error search menu items:", error);
+        });
     }, DashboardConst.typingTimeoutInMs);
   };
   const onFilterByTags = (tags) => {
-    console.log("tags", tags);
     setSelectedTags(tags);
-    DatabaseManager.getMenuItemsWithFilter(searchtext, tags).then((result) => {
-      setMenu(result);
-    });
+    DatabaseManager.getMenuItemsWithFilter(searchtext, tags)
+      .then((result) => {
+        setMenu(result);
+      })
+      .catch((error) => {
+        console.error("Error filtering menu items:", error);
+      });
   };
   const loadMenu = async () => {
     try {
       const response = await axios.get(DashboardConst.menuApiUrl);
       DatabaseManager.insertAllMenuItems(response.data.menu);
-      const localMenu = await DatabaseManager.getAllMenuItems();
-      console.log("local menu", localMenu);
-      setMenu(localMenu); // Assuming the API response is JSON
+      setMenu(response.data.menu);
       setLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -95,7 +99,7 @@ export default function DashboardScreen() {
       <TagsView tags={tags} onSelectedTags={onFilterByTags} />
       {loading ? (
         <View style={DashboardStyle.container}>
-          <ActivityIndicator size="large" color="#0000ff" />
+          <ActivityIndicator size="large" color={colors.primary1} />
         </View>
       ) : (
         <MenuView menu={menu} />
