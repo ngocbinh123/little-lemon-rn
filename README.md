@@ -43,14 +43,12 @@ This is project for capstone course from coursera, and it's a React app that all
 
 ## Screenshots
 
-## Screenshot
-
 ![OnBoarding Screen](https://github.com/ngocbinh123/little-lemon-rn/blob/master/screenshots/ll_1.png)
-![Dashboard Screen - First Arrivival](https://github.com/ngocbinh123/little-lemon-rn/blob/master/screenshots/ll_02.png)
-![Dashboard Screen - Search](https://github.com/ngocbinh123/little-lemon-rn/blob/master/screenshots/ll_02.png)
-![Dashboard Screen - Filter By Tag](https://github.com/ngocbinh123/little-lemon-rn/blob/master/screenshots/ll_03.png)
-![Dashboard Screen - Filter By Tags](https://github.com/ngocbinh123/little-lemon-rn/blob/master/screenshots/ll_04.png)
-![Profile Screen](https://github.com/ngocbinh123/little-lemon-rn/blob/master/screenshots/ll_05.png)
+![Dashboard Screen - First Arrivival](https://github.com/ngocbinh123/little-lemon-rn/blob/master/screenshots/ll_2.png)
+![Dashboard Screen - Search](https://github.com/ngocbinh123/little-lemon-rn/blob/master/screenshots/ll_3.png)
+![Dashboard Screen - Filter By Tag](https://github.com/ngocbinh123/little-lemon-rn/blob/master/screenshots/ll_4.png)
+![Dashboard Screen - Filter By Tags](https://github.com/ngocbinh123/little-lemon-rn/blob/master/screenshots/ll_5.png)
+![Profile Screen](https://github.com/ngocbinh123/little-lemon-rn/blob/master/screenshots/ll_6png)
 
 ## Author Information
 
