@@ -8,12 +8,16 @@ import TagsView from "./components/TagsView";
 import MenuView from "./components/MenuView";
 import AsyncStorageManager from "../../local_storage/AsyncStorageManager";
 import StorageKeys from "../../local_storage/StorageKeys";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import Strings from "./res/Strings";
 import axios from "axios";
+import DashboardConst from "./DashboardConst";
+import DatabaseManager from "../../local_storage/database/DatabaseManager";
+import colors from "../../design_token/Color";
 export default function DashboardScreen() {
   const [menu, setMenu] = useState([]);
+  const [searchtext, setSearchtext] = useState("");
   const [loading, setLoading] = useState(true);
   const tags = [
     Strings.starters,
@@ -24,6 +28,7 @@ export default function DashboardScreen() {
   const [selectedTags, setSelectedTags] = useState([]);
   const [imageUri, setImageUri] = useState("");
   const navigation = useNavigation();
+  const typingTimeoutRef = useRef(null);
   const onProfilePressed = () => {
     navigation.navigate(Router.profile);
   };
@@ -33,18 +38,48 @@ export default function DashboardScreen() {
     setImageUri(image);
   };
 
+  const onSeaching = (text) => {
+    console.log("onSeaching", text);
+    setSearchtext(text);
+
+    // Clear the previous timeout
+    if (typingTimeoutRef.current) {
+      clearTimeout(typingTimeoutRef.current);
+    }
+
+    // Set a new timeout to delay the query execution
+    typingTimeoutRef.current = setTimeout(() => {
+      DatabaseManager.getMenuItemsWithFilter(text, selectedTags)
+        .then((result) => {
+          setMenu(result);
+        })
+        .catch((error) => {
+          console.error("Error search menu items:", error);
+        });
+    }, DashboardConst.typingTimeoutInMs);
+  };
+  const onFilterByTags = (tags) => {
+    setSelectedTags(tags);
+    DatabaseManager.getMenuItemsWithFilter(searchtext, tags)
+      .then((result) => {
+        setMenu(result);
+      })
+      .catch((error) => {
+        console.error("Error filtering menu items:", error);
+      });
+  };
   const loadMenu = async () => {
     try {
-      const response = await axios.get(
-        "https://raw.githubusercontent.com/Meta-Mobile-Developer-PC/Working-With-Data-API/main/capstone.json",
-      );
-      setMenu(response.data.menu); // Assuming the API response is JSON
+      const response = await axios.get(DashboardConst.menuApiUrl);
+      DatabaseManager.insertAllMenuItems(response.data.menu);
+      setMenu(response.data.menu);
       setLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
       setLoading(false);
     }
   };
+
   useEffect(() => {
     loadAvatar();
     loadMenu();
@@ -60,11 +95,11 @@ export default function DashboardScreen() {
         onPress={onProfilePressed}
       />
       <BannerView />
-      <SearchView />
-      <TagsView tags={tags} onSelectedTags={setSelectedTags} />
+      <SearchView searchText={searchtext} onChange={onSeaching} />
+      <TagsView tags={tags} onSelectedTags={onFilterByTags} />
       {loading ? (
         <View style={DashboardStyle.container}>
-          <ActivityIndicator size="large" color="#0000ff" />
+          <ActivityIndicator size="large" color={colors.primary1} />
         </View>
       ) : (
         <MenuView menu={menu} />

@@ -39,7 +39,6 @@ export default function App() {
   useEffect(() => {
     const checkOnboardingStatus = async () => {
       const email = await AsyncStorageManager.getData(StorageKeys.firstName);
-      console.log("firstName1", email);
       const hasEmail = email != null;
       if (hasEmail) {
         dispatch({ type: "SET_ONBOARDING_COMPLETED", payload: true });

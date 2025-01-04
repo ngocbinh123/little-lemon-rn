@@ -1,5 +1,5 @@
 {
-  "name": "firstapp",
+  "name": "littlelemon",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -23,6 +23,7 @@
     "expo-font": "~13.0.1",
     "expo-image-picker": "~16.0.3",
     "expo-splash-screen": "~0.29.16",
+    "expo-sqlite": "~15.0.5",
     "expo-status-bar": "~2.0.0",
     "react": "18.3.1",
     "react-native": "0.76.3",

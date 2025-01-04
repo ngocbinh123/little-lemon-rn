@@ -13,8 +13,9 @@ import Spacing from "../../../design_token/Spacing";
 import Conner from "../../../design_token/Conner";
 import Dimens from "../../../design_token/Dimensions";
 import CircleIconButton from "../../../components/CircleIconButton";
+import DashboardConst from "../DashboardConst";
 import Icon from "react-native-vector-icons/MaterialIcons";
-const SearchView = ({ onChange }) => {
+const SearchView = ({ searchText, onChange }) => {
   const { width: SCREEN_WIDTH } = Dimensions.get("window");
   const [isExpanded, setIsExpanded] = useState(false);
   const inputWidth = useRef(new Animated.Value(36)).current; // Initial width for the circle icon
@@ -26,19 +27,19 @@ const SearchView = ({ onChange }) => {
     if (!isExpanded) {
       // Expand animation
       Animated.timing(inputWidth, {
-        toValue: SCREEN_WIDTH - 36, // Final width for expanded search bar
-        duration: 300,
+        toValue: SCREEN_WIDTH - Dimens.iconBtn, // Final width for expanded search bar
+        duration: DashboardConst.searchAnimationDuration,
         useNativeDriver: false,
       }).start(() => {
         setIsExpanded(true);
         textInputRef.current?.focus(); // Focus the input field
       });
-    } else {
+    } else if (searchText === "") {
       // Collapse animation
       Keyboard.dismiss();
       Animated.timing(inputWidth, {
         toValue: Dimens.iconBtn, // Reset width to initial size
-        duration: 300,
+        duration: DashboardConst.searchAnimationDuration,
         useNativeDriver: false,
       }).start(() => {
         setIsExpanded(false);
@@ -57,6 +58,7 @@ const SearchView = ({ onChange }) => {
               placeholder="Search..."
               placeholderTextColor={Colors.highlight1}
               onChangeText={onChange}
+              value={searchText}
               onBlur={() => {
                 expandSearchBar(); // Collapse when the input loses focus
               }}
